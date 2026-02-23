@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Mail } from "lucide-react";
+import { CheckCircle2, Mail, Building2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import CheckoutButton from "@/components/CheckoutButton";
@@ -64,12 +64,14 @@ const tiers = [
     name: "Company",
     slug: "company" as const,
     price: "Custom",
-    description: "Enterprise partnership for teams & orgs",
+    description:
+      "Strategic partnership for teams and organisations deploying Briven agents in production.",
     perks: [
-      "Company logo on website & README",
-      "Dedicated support channel",
-      "Direct roadmap influence",
-      "Custom integration assistance",
+      "Priority support via dedicated private channel",
+      "Logo placement on website, README & docs",
+      "Early access to pre-release features & builds",
+      "Prioritised issue & feature request handling",
+      "Request custom features & integrations",
     ],
     buttonVariant: "outline" as const,
   },
@@ -78,7 +80,14 @@ const tiers = [
 export default function Sponsors() {
   return (
     <section className="w-full">
-      <div className="mb-12">
+      {/* Section header — slide in from left */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-12"
+      >
         <h2 className="text-3xl font-semibold tracking-tight mb-3">
           <span className="text-primary mr-2">⟩</span>Sponsors
         </h2>
@@ -86,16 +95,22 @@ export default function Sponsors() {
           Briven is 100% open-source. Sponsoring helps ensure continuous
           development, security patches, and new features.
         </p>
-      </div>
+      </motion.div>
 
+      {/* Tier cards — staggered spring entrance */}
       <div className="grid grid-cols-3 gap-4 w-full">
         {tiers.slice(0, 3).map((tier, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
+            transition={{
+              delay: idx * 0.15,
+              type: "spring",
+              stiffness: 200,
+              damping: 20,
+            }}
             className="flex"
           >
             <Card
@@ -168,52 +183,99 @@ export default function Sponsors() {
         ))}
       </div>
 
-      {/* Company tier — centered */}
-      <div className="flex justify-center mt-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="w-1/3"
-        >
-          <Card className="w-full flex flex-col relative overflow-hidden rounded-2xl transition-colors duration-300 border-border">
-            <CardHeader className="p-4 pb-2">
-              <CardTitle className="text-lg font-semibold text-foreground mb-1">
-                {tiers[3].name}
-              </CardTitle>
-              <div className="text-2xl font-bold mt-1 mb-0.5 text-foreground">
-                {tiers[3].price}
+      {/* Company tier — full width, 3 blocks with staggered animations */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+        className="mt-4 w-full"
+      >
+        <Card className="w-full relative overflow-hidden rounded-2xl transition-colors duration-300 border-border">
+          <div className="flex items-stretch">
+            {/* Block 1: Title + description — slide from left */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              className="w-1/4 p-5 flex flex-col justify-center"
+            >
+              <div className="flex items-center gap-2.5 mb-2">
+                <motion.div
+                  initial={{ rotate: -20, scale: 0 }}
+                  whileInView={{ rotate: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: 0.6,
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15,
+                  }}
+                >
+                  <Building2 className="h-5 w-5 text-primary" />
+                </motion.div>
+                <span className="text-lg font-semibold text-foreground">
+                  {tiers[3].name}
+                </span>
               </div>
-              <CardDescription className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 {tiers[3].description}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-1 p-4 pt-2">
-              <ul className="space-y-2">
+              </p>
+            </motion.div>
+
+            {/* Block 2: Perks — staggered reveal */}
+            <div className="w-2/4 px-8 flex flex-col justify-center">
+              <ul className="space-y-1.5">
                 {tiers[3].perks.map((perk, i) => (
-                  <li key={i} className="flex items-start">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mr-2 mt-0.5" />
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: 15 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 + i * 0.08, duration: 0.3 }}
+                    className="flex items-start"
+                  >
+                    <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0 mr-2 mt-0.5" />
                     <span className="text-xs text-foreground/80">{perk}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
-            </CardContent>
-            <CardFooter className="p-4 pt-0">
-              <Button
-                asChild
-                className="w-full h-10 text-sm transition-all hover:scale-[1.02]"
-                variant={tiers[3].buttonVariant}
+            </div>
+
+            {/* Block 3: CTA button — scale in */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                delay: 0.8,
+                type: "spring",
+                stiffness: 250,
+                damping: 18,
+              }}
+              className="w-1/4 p-5 flex items-center justify-center"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
               >
-                <Link href="/contact?tag=sponsor">
-                  <Mail className="mr-2 h-3.5 w-3.5" />
-                  Contact us
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        </motion.div>
-      </div>
+                <Button
+                  asChild
+                  className="h-10 px-6 text-sm"
+                  variant="outline"
+                >
+                  <Link href="/contact?tag=sponsor">
+                    <Mail className="mr-2 h-3.5 w-3.5" />
+                    Contact us
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
+        </Card>
+      </motion.div>
 
       {/* Company sponsors */}
       {companySponsors.length > 0 && (

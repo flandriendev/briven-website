@@ -5,47 +5,46 @@ import {
   MessageCircle,
   BookOpen,
   Github,
-  Heart,
-  type LucideIcon,
 } from "lucide-react";
+import { GiPuzzle } from "react-icons/gi";
 import Link from "next/link";
 
 const links: {
-  icon: LucideIcon;
+  icon: React.ComponentType<{ className?: string }>;
   label: string;
   description: string;
   href: string;
   glowColor: string;
 }[] = [
-  {
-    icon: MessageCircle,
-    label: "Discord",
-    description: "Join the community",
-    href: "https://discord.com/channels/1475388668721107081/1475388669639790765",
-    glowColor: "#5865F2",
-  },
-  {
-    icon: BookOpen,
-    label: "Documentation",
-    description: "Learn the ropes",
-    href: "/docs",
-    glowColor: "#3b82f6",
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    description: "View the source",
-    href: "https://github.com/flandriendev/briven",
-    glowColor: "#ffffff",
-  },
-  {
-    icon: Heart,
-    label: "Sponsors",
-    description: "Support the project",
-    href: "https://github.com/sponsors/flandriendev",
-    glowColor: "#fbe731",
-  },
-];
+    {
+      icon: MessageCircle,
+      label: "Discord",
+      description: "Join the community",
+      href: "https://discord.com/channels/1475388668721107081/1475388669639790765",
+      glowColor: "#5865F2",
+    },
+    {
+      icon: BookOpen,
+      label: "Documentation",
+      description: "Learn the ropes",
+      href: "/docs",
+      glowColor: "#3b82f6",
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      description: "View the source",
+      href: "https://github.com/flandriendev/briven",
+      glowColor: "#ffffff",
+    },
+    {
+      icon: GiPuzzle,
+      label: "SkillsMarket",
+      description: "Premium marketplace",
+      href: "https://skillsmarket.briven.ai",
+      glowColor: "#fbe731",
+    },
+  ];
 
 export default function QuickLinks() {
   return (
