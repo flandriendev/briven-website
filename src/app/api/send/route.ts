@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   const { email, name } = parsed.data;
 
   const { error } = await resend.emails.send({
-    from: "Briven <noreply@briven.ai>",
+    from: "Briven <noreply@murphus.eu>",
     to: email,
     subject: "Welcome to Briven Waitlist!",
     react: ConfirmationEmail({ name }),

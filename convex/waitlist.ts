@@ -49,7 +49,7 @@ export const sendConfirmationEmail = internalAction({
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: "Briven <noreply@briven.ai>",
+      from: "Briven <noreply@murphus.eu>",
       to: args.email,
       subject: "Welcome to Briven Waitlist!",
       react: ConfirmationEmail({ name: args.name }) as ReactElement,
