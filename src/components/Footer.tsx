@@ -6,6 +6,7 @@ import { Github, Twitter } from "lucide-react";
 const navLinks = [
   { label: "Docs", href: "/docs" },
   { label: "Skills", href: "/skills" },
+  { label: "Shoutouts", href: "/shoutouts" },
   { label: "Changelog", href: "/changelog" },
   { label: "Roadmap", href: "/roadmap" },
   { label: "Sponsors", href: "https://github.com/sponsors/flandriendev" },

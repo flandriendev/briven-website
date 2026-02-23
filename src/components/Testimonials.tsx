@@ -127,8 +127,7 @@ export default function Testimonials() {
           <span className="text-primary mr-2">⟩</span>What People Say
         </h2>
         <Link
-          href="https://github.com/flandriendev/briven"
-          target="_blank"
+          href="/shoutouts"
           className="text-sm text-primary hover:text-primary/80 transition-colors"
         >
           View all →
