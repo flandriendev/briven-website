@@ -7,17 +7,19 @@ const navLinks = [
   { label: "Docs", href: "/docs" },
   { label: "Skills", href: "/skills" },
   { label: "Shoutouts", href: "/shoutouts" },
+  { label: "Showcases", href: "/showcases" },
   { label: "Changelog", href: "/changelog" },
-  { label: "Roadmap", href: "/roadmap" },
-  { label: "Sponsors", href: "https://github.com/sponsors/flandriendev" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
+  // { label: "Roadmap", href: "/roadmap" },
+  { label: "Trust", href: "/trust" },
+  // { label: "Sponsors", href: "https://github.com/sponsors/flandriendev" },
+  // { label: "Privacy", href: "/privacy" },
+  // { label: "Terms", href: "/terms" },
 ];
 
 export default function Footer() {
   return (
     <footer className="w-full mt-8">
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-4xl mx-auto px-6 py-10">
         {/* Inline navigation links */}
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-8">
           {navLinks.map((link) => (

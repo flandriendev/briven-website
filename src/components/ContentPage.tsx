@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import Footer from "@/components/Footer";
 
 interface ContentPageProps {
   title: string;
@@ -34,6 +35,7 @@ export default function ContentPage({
 
         <article className="prose-briven">{children}</article>
       </div>
+      <Footer />
     </div>
   );
 }

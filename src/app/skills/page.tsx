@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { skills, categories } from "@/lib/skills";
 import {
   Globe,
@@ -109,7 +110,7 @@ export default function SkillsPage() {
     <>
       <Header />
       <div className="min-h-screen bg-background">
-        <div className="max-w-6xl mx-auto px-6 pt-20 pb-16">
+        <div className="max-w-4xl mx-auto px-6 pt-20 pb-16">
           {/* Back link */}
           <Link
             href="/"
@@ -226,6 +227,7 @@ export default function SkillsPage() {
             </div>
           )}
         </div>
+        <Footer />
       </div>
     </>
   );

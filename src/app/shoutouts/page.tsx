@@ -101,7 +101,7 @@ export default function ShoutoutsPage() {
     <>
       <Header />
       <div className="min-h-screen bg-background">
-        <div className="max-w-6xl mx-auto px-6 pt-20 pb-16">
+        <div className="max-w-4xl mx-auto px-6 pt-20 pb-16">
           {/* Back link */}
           <Link
             href="/"

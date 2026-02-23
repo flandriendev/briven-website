@@ -9,7 +9,7 @@ export default function WhatIsBriven() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto"
+      className="flex flex-col space-y-6"
     >
       <h2 className="text-3xl font-semibold tracking-tight text-foreground">
         <span className="text-primary mr-2">⟩</span>What is Briven?

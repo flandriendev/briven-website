@@ -92,7 +92,7 @@ function TestimonialCard({
   avatar: string;
 }) {
   return (
-    <div className="flex-shrink-0 w-[360px] bg-card border border-border rounded-2xl p-5 mx-2">
+    <div className="flex-shrink-0 w-[360px] bg-card border border-border rounded-2xl p-5 mx-2 transition-colors duration-200 hover:border-primary/40">
       <div className="flex items-start gap-3">
         <Image
           src={avatar}
@@ -122,7 +122,7 @@ export default function Testimonials() {
       className="w-full overflow-hidden"
     >
       {/* Header */}
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between mb-6">
+      <div className="max-w-4xl mx-auto px-6 flex items-center justify-between mb-6">
         <h2 className="text-3xl font-semibold tracking-tight">
           <span className="text-primary mr-2">⟩</span>What People Say
         </h2>

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { skills, getSkillBySlug } from "@/lib/skills";
 import {
   ArrowLeft,
@@ -221,6 +222,7 @@ export default async function SkillDetailPage({
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );
