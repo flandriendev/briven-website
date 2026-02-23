@@ -88,8 +88,8 @@ export default function Sponsors() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 w-full">
-        {tiers.map((tier, idx) => (
+      <div className="grid grid-cols-3 gap-4 w-full">
+        {tiers.slice(0, 3).map((tier, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, y: 20 }}
@@ -107,51 +107,51 @@ export default function Sponsors() {
               {tier.highlight && (
                 <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary to-primary/50" />
               )}
-              <CardHeader>
-                <div className="flex justify-between items-center mb-2">
-                  <CardTitle className="text-2xl font-semibold text-foreground">
+              <CardHeader className="p-4 pb-2">
+                <div className="flex justify-between items-center mb-1">
+                  <CardTitle className="text-lg font-semibold text-foreground">
                     {tier.name}
                   </CardTitle>
                   {tier.highlight && (
                     <Badge
                       variant="default"
-                      className="bg-primary/20 text-primary hover:bg-primary/30 border-none"
+                      className="bg-primary/20 text-primary hover:bg-primary/30 border-none text-[10px]"
                     >
                       Popular
                     </Badge>
                   )}
                 </div>
-                <div className="text-4xl font-bold mt-2 mb-1 text-foreground">
+                <div className="text-2xl font-bold mt-1 mb-0.5 text-foreground">
                   {tier.price}
                   {tier.slug !== "company" && (
-                    <span className="text-base font-normal text-muted-foreground">
+                    <span className="text-xs font-normal text-muted-foreground">
                       /mo
                     </span>
                   )}
                 </div>
-                <CardDescription className="text-muted-foreground">
+                <CardDescription className="text-xs text-muted-foreground">
                   {tier.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-1">
-                <ul className="space-y-3">
+              <CardContent className="flex-1 p-4 pt-2">
+                <ul className="space-y-2">
                   {tier.perks.map((perk, i) => (
                     <li key={i} className="flex items-start">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mr-3 mt-0.5" />
-                      <span className="text-sm text-foreground/80">{perk}</span>
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mr-2 mt-0.5" />
+                      <span className="text-xs text-foreground/80">{perk}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="p-4 pt-0">
                 {tier.slug === "company" ? (
                   <Button
                     asChild
-                    className="w-full h-12 transition-all hover:scale-[1.02]"
+                    className="w-full h-10 text-sm transition-all hover:scale-[1.02]"
                     variant={tier.buttonVariant}
                   >
                     <Link href="/contact?tag=sponsor">
-                      <Mail className="mr-2 h-4 w-4" />
+                      <Mail className="mr-2 h-3.5 w-3.5" />
                       Contact us
                     </Link>
                   </Button>
@@ -166,6 +166,53 @@ export default function Sponsors() {
             </Card>
           </motion.div>
         ))}
+      </div>
+
+      {/* Company tier — centered */}
+      <div className="flex justify-center mt-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="w-1/3"
+        >
+          <Card className="w-full flex flex-col relative overflow-hidden rounded-2xl transition-colors duration-300 border-border">
+            <CardHeader className="p-4 pb-2">
+              <CardTitle className="text-lg font-semibold text-foreground mb-1">
+                {tiers[3].name}
+              </CardTitle>
+              <div className="text-2xl font-bold mt-1 mb-0.5 text-foreground">
+                {tiers[3].price}
+              </div>
+              <CardDescription className="text-xs text-muted-foreground">
+                {tiers[3].description}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 p-4 pt-2">
+              <ul className="space-y-2">
+                {tiers[3].perks.map((perk, i) => (
+                  <li key={i} className="flex items-start">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mr-2 mt-0.5" />
+                    <span className="text-xs text-foreground/80">{perk}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+            <CardFooter className="p-4 pt-0">
+              <Button
+                asChild
+                className="w-full h-10 text-sm transition-all hover:scale-[1.02]"
+                variant={tiers[3].buttonVariant}
+              >
+                <Link href="/contact?tag=sponsor">
+                  <Mail className="mr-2 h-3.5 w-3.5" />
+                  Contact us
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        </motion.div>
       </div>
 
       {/* Company sponsors */}

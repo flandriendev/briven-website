@@ -53,8 +53,8 @@ export async function POST(request: Request) {
       title,
       description: `Monthly sponsorship – ${title}`,
       callback_url: `${appUrl}/api/checkout/callback`,
-      success_url: `${appUrl}/pricing?status=success`,
-      cancel_url: `${appUrl}/pricing?status=cancelled`,
+      success_url: `${appUrl}/?status=success`,
+      cancel_url: `${appUrl}/?status=cancelled`,
     }),
   });
 
