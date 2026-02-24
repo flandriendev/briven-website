@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { skills, categories } from "@/lib/skills";
+import { skills } from "@/lib/skills";
 import {
   Globe,
   FolderOpen,
@@ -39,66 +40,93 @@ import {
 } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
-  Globe: <Globe className="h-6 w-6" />,
-  FolderOpen: <FolderOpen className="h-6 w-6" />,
-  Terminal: <Terminal className="h-6 w-6" />,
-  Send: <Send className="h-6 w-6" />,
-  MessageCircle: <MessageCircle className="h-6 w-6" />,
-  Mail: <Mail className="h-6 w-6" />,
-  Sparkles: <Sparkles className="h-6 w-6" />,
-  Shield: <Shield className="h-6 w-6" />,
-  Brain: <Brain className="h-6 w-6" />,
-  Hash: <Hash className="h-6 w-6" />,
-  MessageSquare: <MessageSquare className="h-6 w-6" />,
-  Mic: <Mic className="h-6 w-6" />,
-  Database: <Database className="h-6 w-6" />,
-  Clock: <Clock className="h-6 w-6" />,
-  Users: <Users className="h-6 w-6" />,
-  ShieldCheck: <ShieldCheck className="h-6 w-6" />,
-  Megaphone: <Megaphone className="h-6 w-6" />,
-  AtSign: <AtSign className="h-6 w-6" />,
-  Camera: <Camera className="h-6 w-6" />,
-  Briefcase: <Briefcase className="h-6 w-6" />,
-  MessagesSquare: <MessagesSquare className="h-6 w-6" />,
-  Video: <Video className="h-6 w-6" />,
-  GitBranch: <GitBranch className="h-6 w-6" />,
-  Code2: <Code2 className="h-6 w-6" />,
-  Box: <Box className="h-6 w-6" />,
-  Rocket: <Rocket className="h-6 w-6" />,
-  Bug: <Bug className="h-6 w-6" />,
-  Zap: <Zap className="h-6 w-6" />,
+  Globe: <Globe className="h-7 w-7" />,
+  FolderOpen: <FolderOpen className="h-7 w-7" />,
+  Terminal: <Terminal className="h-7 w-7" />,
+  Send: <Send className="h-7 w-7" />,
+  MessageCircle: <MessageCircle className="h-7 w-7" />,
+  Mail: <Mail className="h-7 w-7" />,
+  Sparkles: <Sparkles className="h-7 w-7" />,
+  Shield: <Shield className="h-7 w-7" />,
+  Brain: <Brain className="h-7 w-7" />,
+  Hash: <Hash className="h-7 w-7" />,
+  MessageSquare: <MessageSquare className="h-7 w-7" />,
+  Mic: <Mic className="h-7 w-7" />,
+  Database: <Database className="h-7 w-7" />,
+  Clock: <Clock className="h-7 w-7" />,
+  Users: <Users className="h-7 w-7" />,
+  ShieldCheck: <ShieldCheck className="h-7 w-7" />,
+  Megaphone: <Megaphone className="h-7 w-7" />,
+  AtSign: <AtSign className="h-7 w-7" />,
+  Camera: <Camera className="h-7 w-7" />,
+  Briefcase: <Briefcase className="h-7 w-7" />,
+  MessagesSquare: <MessagesSquare className="h-7 w-7" />,
+  Video: <Video className="h-7 w-7" />,
+  GitBranch: <GitBranch className="h-7 w-7" />,
+  Code2: <Code2 className="h-7 w-7" />,
+  Box: <Box className="h-7 w-7" />,
+  Rocket: <Rocket className="h-7 w-7" />,
+  Bug: <Bug className="h-7 w-7" />,
+  Zap: <Zap className="h-7 w-7" />,
 };
 
+const categoryMeta: Record<string, { description: string }> = {
+  Messaging: {
+    description:
+      "Connect your agents to chat apps — Telegram, WhatsApp, Discord, Slack, and more.",
+  },
+  Data: {
+    description:
+      "Browse, scrape, and extract data from the web.",
+  },
+  System: {
+    description:
+      "File management, scheduling, and system-level operations.",
+  },
+  Developer: {
+    description:
+      "Code generation, execution, reviews, and CI/CD automation.",
+  },
+  Security: {
+    description:
+      "Zero-trust networking, skill scanning, and infrastructure protection.",
+  },
+  Core: {
+    description:
+      "Memory, multi-agent orchestration, and foundational agent capabilities.",
+  },
+  Interface: {
+    description:
+      "Voice, speech-to-text, and text-to-speech interfaces.",
+  },
+  Social: {
+    description:
+      "Post, engage, and manage your social media presence.",
+  },
+};
+
+const categoryOrder = [
+  "Messaging",
+  "Core",
+  "Developer",
+  "Data",
+  "System",
+  "Security",
+  "Interface",
+  "Social",
+];
+
 export default function SkillsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
 
-  const availableCount = skills.filter((s) => s.status === "available").length;
-  const comingSoonCount = skills.filter(
-    (s) => s.status === "coming-soon"
-  ).length;
-
   const filtered = skills.filter((s) => {
-    const matchesCategory =
-      activeCategory === "All" || s.category === activeCategory;
-    const matchesSearch =
+    return (
       search === "" ||
       s.name.toLowerCase().includes(search.toLowerCase()) ||
-      s.description.toLowerCase().includes(search.toLowerCase());
-    return matchesCategory && matchesSearch;
+      s.description.toLowerCase().includes(search.toLowerCase())
+    );
   });
 
-  // Group filtered skills by category (preserving category order)
-  const categoryOrder = [
-    "Data",
-    "System",
-    "Developer",
-    "Messaging",
-    "Security",
-    "Core",
-    "Interface",
-    "Social",
-  ];
   const grouped = categoryOrder
     .map((cat) => ({
       category: cat,
@@ -106,116 +134,142 @@ export default function SkillsPage() {
     }))
     .filter((g) => g.skills.length > 0);
 
+  const totalCount = skills.length;
+  const availableCount = skills.filter((s) => s.status === "available").length;
+
   return (
     <>
       <Header />
       <div className="min-h-screen bg-background">
-        <div className="max-w-[860px] mx-auto px-6 max-[480px]:px-4 pt-20 pb-16">
+        <div className="max-w-5xl mx-auto px-6 max-[480px]:px-4 pt-20 pb-16">
           {/* Back link */}
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <ArrowLeft className="h-4 w-4" />
-            Back to home
-          </Link>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-12"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to home
+            </Link>
+          </motion.div>
 
-          {/* Header */}
-          <div className="mb-12">
-            <h1 className="text-4xl font-bold tracking-tight text-foreground mb-3">
-              <span className="text-primary mr-2">⟩</span>Skill Tools
+          {/* Hero header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-foreground mb-4 italic">
+              Skill Tools
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Reusable capabilities for your Briven agents. Install any skill
-              with a single command to extend what your agents can do.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+              {totalCount}+ skill tools for your Briven agents.
+              <br className="hidden sm:block" />
+              Extend agent capabilities with built-in and community skills.
             </p>
-            <div className="flex items-center gap-4 mt-4">
+
+            {/* Counts */}
+            <div className="flex items-center justify-center gap-6 mb-8">
               <span className="text-sm font-medium text-primary">
-                Available ({availableCount})
+                {availableCount} Available
               </span>
-              <span className="text-sm font-medium text-muted-foreground">
-                Coming Soon ({comingSoonCount})
+              <span className="text-sm font-medium text-amber-500/80">
+                {totalCount - availableCount} Coming Soon
               </span>
             </div>
-          </div>
 
-          {/* Search + Filters */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            {/* Search */}
+            <div className="relative max-w-md mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search skills..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-10 pl-10 pr-4 bg-card border border-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all"
+                className="w-full h-11 pl-11 pr-4 bg-card border border-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all"
               />
             </div>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${
-                    activeCategory === cat
-                      ? "bg-primary/15 text-primary border-primary/30"
-                      : "border-border text-muted-foreground hover:text-foreground hover:border-border"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
+          </motion.div>
 
-          {/* Skills grouped by category */}
-          {grouped.map((group) => (
-            <div key={group.category} className="mb-12">
-              <h2 className="text-xl font-semibold tracking-tight text-foreground mb-6">
+          {/* Category sections */}
+          {grouped.map((group, groupIdx) => (
+            <motion.section
+              key={group.category}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.45, delay: groupIdx * 0.04 }}
+              className="mb-16"
+            >
+              {/* Category header */}
+              <h2 className="text-2xl font-bold tracking-tight text-foreground mb-1">
                 {group.category}
-                <span className="text-muted-foreground font-normal text-sm ml-2">
-                  ({group.skills.length})
-                </span>
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {group.skills.map((skill) => (
-                  <Link
+              <p className="text-sm text-muted-foreground mb-6">
+                {categoryMeta[group.category]?.description}
+              </p>
+
+              {/* Skill cards grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {group.skills.map((skill, idx) => (
+                  <motion.div
                     key={skill.slug}
-                    href={`/skills/${skill.slug}`}
-                    className={`group relative overflow-hidden bg-card border rounded-2xl p-5 transition-all no-underline ${
-                      skill.status === "coming-soon"
-                        ? "border-amber-500/20 hover:border-amber-500/40 opacity-75 hover:opacity-100"
-                        : "border-border hover:border-primary/40"
-                    }`}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.04 }}
                   >
-                    {skill.status === "coming-soon" && (
-                      <div className="absolute top-0 right-0 bg-amber-500/90 text-[9px] font-bold uppercase tracking-wider text-black px-2.5 py-0.5 rounded-bl-lg">
-                        Soon
-                      </div>
-                    )}
-                    <div className="flex items-start gap-4">
+                    <Link
+                      href={`/skills/${skill.slug}`}
+                      className={`group relative flex flex-col items-center text-center p-5 rounded-2xl border bg-card transition-all duration-300 no-underline h-full ${
+                        skill.status === "coming-soon"
+                          ? "border-border/60 opacity-60 hover:opacity-100 hover:border-amber-500/40"
+                          : "border-border hover:border-primary/50 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(238,69,70,0.15)]"
+                      }`}
+                    >
+                      {/* Coming soon badge */}
+                      {skill.status === "coming-soon" && (
+                        <div className="absolute top-2 right-2 text-[9px] font-bold uppercase tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-full">
+                          Soon
+                        </div>
+                      )}
+
+                      {/* Icon */}
                       <div
-                        className={`shrink-0 mt-0.5 ${
+                        className={`mb-3 p-3 rounded-xl transition-colors duration-300 ${
                           skill.status === "coming-soon"
-                            ? "text-amber-500/70"
-                            : "text-primary"
+                            ? "text-muted-foreground bg-secondary"
+                            : "text-primary bg-primary/10 group-hover:bg-primary/15"
                         }`}
                       >
                         {iconMap[skill.icon]}
                       </div>
-                      <div className="min-w-0">
-                        <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate mb-1">
-                          {skill.name}
-                        </h3>
-                        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
-                          {skill.description}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
+
+                      {/* Name */}
+                      <h3
+                        className={`text-sm font-semibold tracking-tight mb-1 transition-colors ${
+                          skill.status === "coming-soon"
+                            ? "text-muted-foreground"
+                            : "text-foreground group-hover:text-primary"
+                        }`}
+                      >
+                        {skill.name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-xs text-muted-foreground/70 leading-relaxed line-clamp-2">
+                        {skill.description}
+                      </p>
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.section>
           ))}
 
           {/* Empty state */}
@@ -226,6 +280,30 @@ export default function SkillsPage() {
               </p>
             </div>
           )}
+
+          {/* CTA section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mt-8 mb-4"
+          >
+            <div className="border border-border rounded-2xl bg-card p-10">
+              <h2 className="text-2xl font-bold tracking-tight text-foreground mb-3">
+                Ready to get started?
+              </h2>
+              <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
+                Install Briven and start using these skill tools in minutes.
+              </p>
+              <Link
+                href="/docs/quick-start"
+                className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-xl hover:brightness-110 transition-all no-underline"
+              >
+                Get Started
+              </Link>
+            </div>
+          </motion.div>
         </div>
         <Footer />
       </div>

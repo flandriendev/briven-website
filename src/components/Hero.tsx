@@ -55,7 +55,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-primary text-sm md:text-base font-semibold uppercase tracking-[0.2em] mb-8"
         >
-          Secure self-hosted AI agent framework.
+          Personal, autonomous AI agent framework.
         </motion.p>
 
         {/* Description */}
@@ -63,9 +63,10 @@ export default function Hero() {
           variants={itemVariants}
           className="text-base md:text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed"
         >
-          Built on Python/FastAPI with Tailscale zero-trust networking, modular
-          skills, and native messaging for Telegram, WhatsApp, and email. Your
-          agents, your infrastructure.
+          Built on Python/FastAPI, disciplined by /atlas, and secured by
+          Tailscale zero-trust networking. Self-extending, memory-persistent,
+          with native messaging for Telegram, WhatsApp, Discord, Slack, and
+          email.
         </motion.p>
 
         {/* Announcement pill */}

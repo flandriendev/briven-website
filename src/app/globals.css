@@ -278,6 +278,40 @@
   animation-play-state: paused;
 }
 
+/* ── Footer social icon hover ── */
+.footer-social-icon {
+  --brand: 255 255 255;
+  @apply relative flex items-center justify-center w-10 h-10 rounded-full
+         text-muted-foreground/50 border border-transparent
+         transition-all duration-300 cursor-pointer;
+  background: transparent;
+}
+
+.footer-social-icon::before {
+  content: "";
+  @apply absolute inset-0 rounded-full opacity-0 transition-all duration-300;
+  background: radial-gradient(circle, rgb(var(--brand) / 0.12) 0%, transparent 70%);
+  transform: scale(0.6);
+}
+
+.footer-social-icon:hover {
+  color: rgb(var(--brand));
+  border-color: rgb(var(--brand) / 0.35);
+  transform: translateY(-3px) scale(1.15);
+  filter: drop-shadow(0 0 10px rgb(var(--brand) / 0.45))
+          drop-shadow(0 0 28px rgb(var(--brand) / 0.15));
+}
+
+.footer-social-icon:hover::before {
+  @apply opacity-100;
+  transform: scale(1.5);
+}
+
+/* GitHub — brand white */
+.footer-social-github { --brand: 240 240 242; }
+/* X / Twitter — brand blue */
+.footer-social-x { --brand: 29 155 240; }
+
 /* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .briven-logo {

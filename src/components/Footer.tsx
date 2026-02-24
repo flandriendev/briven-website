@@ -3,19 +3,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Github, Twitter } from "lucide-react";
-import { RiTwitterXLine } from "react-icons/ri";
+import { RiGithubFill, RiTwitterXLine } from "react-icons/ri";
 
 const navLinks = [
   { label: "Docs", href: "/docs" },
-  { label: "Blog", href: "/blog" },
+  // { label: "GitHub", href: "https://github.com/flandriendev/briven" },
   { label: "Skills", href: "/skills" },
+  { label: "Blog", href: "/blog" },
   { label: "Shoutouts", href: "/shoutouts" },
-  { label: "Showcases", href: "/showcases" },
-  { label: "Changelog", href: "/changelog" },
-  // { label: "Roadmap", href: "/roadmap" },
+  // { label: "Showcases", href: "/showcases" },
   // TODO: Production – change href to "https://trust.briven.ai"
   { label: "Trust", href: "/trust" },
+  // { label: "Changelog", href: "/changelog" },
+  // { label: "Roadmap", href: "/roadmap" },
   // { label: "Sponsors", href: "https://github.com/sponsors/flandriendev" },
   // { label: "Privacy", href: "/privacy" },
   // { label: "Terms", href: "/terms" },
@@ -58,29 +58,60 @@ export default function Footer() {
 
         {/* Attribution & socials */}
         <div className="flex flex-col items-center gap-4">
-          <div className="flex items-center gap-4">
-            <Link
-              href="https://github.com/flandriendev/briven"
-              target="_blank"
-              className="text-muted-foreground/50 hover:text-foreground transition-colors"
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+            className="flex items-center gap-5"
+          >
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, scale: 0, rotate: -180 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  rotate: 0,
+                  transition: { type: "spring", stiffness: 200, damping: 15 },
+                },
+              }}
             >
-              <span className="sr-only">GitHub</span>
-              <Github className="h-4 w-4" />
-            </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground/50 hover:text-foreground transition-colors"
+              <Link
+                href="https://github.com/flandriendev/briven"
+                target="_blank"
+                className="footer-social-icon footer-social-github group"
+              >
+                <span className="sr-only">GitHub</span>
+                <RiGithubFill className="h-5 w-5 relative z-10" />
+              </Link>
+            </motion.div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, scale: 0, rotate: 180 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  rotate: 0,
+                  transition: { type: "spring", stiffness: 200, damping: 15 },
+                },
+              }}
             >
-              <span className="sr-only">X.com</span>
-              <RiTwitterXLine className="h-4 w-4" />
-            </Link>
-          </div>
+              <Link
+                href="https://x.com/briven_ai"
+                target="_blank"
+                className="footer-social-icon footer-social-x group"
+              >
+                <span className="sr-only">X.com</span>
+                <RiTwitterXLine className="h-5 w-5 relative z-10" />
+              </Link>
+            </motion.div>
+          </motion.div>
           <p className="text-xs text-muted-foreground/40 text-center">
             &copy; {new Date().getFullYear()}  Built by{" "}
             <span style={{ color: "#afff92" }}>Linus</span>
             <Image src="/Linus.svg" alt="Linus" width={16} height={16} className="inline-block size-4 align-middle mx-1" />
             a lazy AI panda with a <span style={{ color: "#afff92" }}>soul</span>, by <span style={{ color: "#ee4546" }}>flndrn</span> &amp; <span style={{ color: "#ee4546" }}>community</span>.
-            Independent open-source project.
+            open-source project.
           </p>
         </div>
       </div>

@@ -344,7 +344,7 @@ export default function ThreatModelPage() {
             href="https://skillshub.briven.ai"
             className="text-primary/70 hover:text-primary transition-colors"
           >
-            skillshub.ai
+            skillshub.briven.ai
           </Link>
         </footer>
       </main>

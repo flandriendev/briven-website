@@ -26,8 +26,8 @@ export const skills: Skill[] = [
     category: "Data",
     status: "available",
     icon: "Globe",
-    toolPath: "lib/browser/",
-    installCommand: "briven skill add web-browsing",
+    toolPath: "python/tools/browser_agent.py",
+    installCommand: "Built-in — available out of the box",
     features: [
       "Headless browser automation via Playwright",
       "CSS & XPath selectors for data extraction",
@@ -50,8 +50,8 @@ print(result.text)`,
     category: "System",
     status: "available",
     icon: "FolderOpen",
-    toolPath: "tools/file_manager.py",
-    installCommand: "briven skill add file-management",
+    toolPath: "python/tools/ (built-in)",
+    installCommand: "Built-in — available out of the box",
     features: [
       "Read/write files in any text or binary format",
       "Directory listing and recursive traversal",
@@ -74,8 +74,8 @@ file_management.write("./output/result.txt", content)`,
     category: "Developer",
     status: "available",
     icon: "Terminal",
-    toolPath: "tools/code_interpreter.py",
-    installCommand: "briven skill add code-execution",
+    toolPath: "python/tools/code_execution_tool.py",
+    installCommand: "Built-in — available out of the box",
     features: [
       "Sandboxed Python execution environment",
       "Full stdout/stderr capture",
@@ -96,12 +96,12 @@ print(math.factorial(20))
     description:
       "Send and receive messages, media, and commands via Telegram bots.",
     longDescription:
-      "Full Telegram Bot API integration powered by aiogram. Send text, images, documents, and rich media. Receive messages and commands from users. Supports inline keyboards, callbacks, and group chat management.",
+      "Telegram Bot API integration with auto-discover chat ID via pairing flow. Send text, images, documents, and rich media. Receive messages and commands from users. Configurable via usr/.env.",
     category: "Messaging",
     status: "available",
     icon: "Send",
     toolPath: "tools/telegram.py",
-    installCommand: "briven skill add telegram",
+    installCommand: "Built-in — configure via usr/.env",
     features: [
       "Send/receive text, images, and documents",
       "Inline keyboard and callback handling",
@@ -122,12 +122,12 @@ await telegram.send_message(
     description:
       "Send and receive WhatsApp messages via the Business API.",
     longDescription:
-      "Connect your agents to WhatsApp using the official Business API. Send text, templates, media messages, and receive incoming messages with webhook support. Perfect for customer-facing agent workflows.",
+      "Connect your agents to WhatsApp using the Business Cloud API. Send text and media messages. Configurable via usr/.env.",
     category: "Messaging",
     status: "available",
     icon: "MessageCircle",
     toolPath: "tools/whatsapp.py",
-    installCommand: "briven skill add whatsapp",
+    installCommand: "Built-in — configure via usr/.env",
     features: [
       "WhatsApp Business API integration",
       "Template and freeform messaging",
@@ -148,12 +148,12 @@ await whatsapp.send_message(
     description:
       "Send emails via SMTP and read inbox via IMAP with full attachment support.",
     longDescription:
-      "Complete email integration with SMTP sending and IMAP receiving. Compose HTML or plain-text emails, add attachments, read and filter inbox messages, and manage folders. Supports OAuth and app passwords.",
+      "Email integration via SMTP sending with full header support. Compose and send emails directly from your agent. Configurable via usr/.env.",
     category: "Messaging",
     status: "available",
     icon: "Mail",
-    toolPath: "tools/email.py",
-    installCommand: "briven skill add email",
+    toolPath: "tools/email_send.py",
+    installCommand: "Built-in — configure via usr/.env",
     features: [
       "SMTP sending with HTML support",
       "IMAP inbox reading and filtering",
@@ -181,7 +181,7 @@ await email.send(
     status: "available",
     icon: "Sparkles",
     toolPath: "tools/claude_code.py",
-    installCommand: "briven skill add claude-code",
+    installCommand: "Built-in — requires API_KEY_ANTHROPIC in usr/.env",
     features: [
       "Code generation from natural language",
       "Refactoring and code improvement",
@@ -207,7 +207,7 @@ generated = await claude_code.generate(
     status: "available",
     icon: "Shield",
     toolPath: "tools/tailscale.py",
-    installCommand: "briven skill add tailscale",
+    installCommand: "Built-in — configure TAILSCALE_AUTHKEY in usr/.env",
     features: [
       "Tailnet status monitoring",
       "Peer discovery and health checks",
@@ -231,8 +231,8 @@ print(f"Connected to {len(peers)} nodes")`,
     category: "Core",
     status: "available",
     icon: "Brain",
-    toolPath: "tools/memory/",
-    installCommand: "briven skill add memory",
+    toolPath: "python/tools/memory_*.py",
+    installCommand: "Built-in — available out of the box",
     features: [
       "SQLite-backed persistent storage",
       "Conversation history tracking",
@@ -253,12 +253,12 @@ pref = await memory.recall("user_preference")`,
     description:
       "Send messages, manage channels, and respond to events in Slack workspaces.",
     longDescription:
-      "Full Slack workspace integration. Send messages to channels, respond to mentions, manage threads, and react to events using the Slack Web API. Perfect for team-facing agent workflows and internal automation.",
+      "Slack integration via webhooks and Bot API with channel targeting. Send messages, respond to mentions, and manage threads. Configurable via usr/.env.",
     category: "Messaging",
     status: "available",
     icon: "Hash",
     toolPath: "tools/slack.py",
-    installCommand: "briven skill add slack",
+    installCommand: "Built-in — configure via usr/.env",
     features: [
       "Channel messaging and threading",
       "Event-driven responses (mentions, reactions)",
@@ -279,12 +279,12 @@ await slack.send_message(
     description:
       "Bot commands, messaging, and event handling for Discord servers.",
     longDescription:
-      "Run a full Discord bot from your Briven agent. Respond to commands, send rich embeds, manage roles, and handle server events. Supports slash commands, buttons, modals, and all modern Discord interaction patterns.",
+      "Discord integration via webhooks with rich embeds. Send messages, status updates, and notifications to your Discord channels directly from your Briven agent.",
     category: "Messaging",
     status: "available",
     icon: "MessageSquare",
     toolPath: "tools/discord.py",
-    installCommand: "briven skill add discord",
+    installCommand: "Built-in — configure via usr/.env",
     features: [
       "Slash commands and interactions",
       "Rich embed and button support",
@@ -304,25 +304,25 @@ await discord.send_embed(
     slug: "voice",
     name: "Voice Interface",
     description:
-      "Speech-to-text and text-to-speech for voice-controlled agents.",
+      "Speech-to-text via Whisper and text-to-speech via Kokoro TTS.",
     longDescription:
-      "Add voice capabilities to your agents with speech recognition and synthesis. Convert spoken commands to text, generate natural voice responses, and build fully voice-controlled agent interactions.",
+      "Add voice capabilities to your agents with OpenAI Whisper for speech-to-text and Kokoro for text-to-speech. Full WebUI integration with microphone input and voice settings. API endpoints at /api/transcribe and /api/synthesize.",
     category: "Interface",
     status: "available",
     icon: "Mic",
-    toolPath: "tools/voice.py",
-    installCommand: "briven skill add voice",
+    toolPath: "python/api/ (transcribe + synthesize)",
+    installCommand: "Built-in — available out of the box",
     features: [
-      "Speech-to-text via SpeechRecognition",
-      "Text-to-speech generation",
-      "Multiple language support",
-      "Wake word detection",
-      "Audio streaming support",
+      "Speech-to-text via OpenAI Whisper",
+      "Text-to-speech via Kokoro TTS",
+      "WebUI microphone integration",
+      "API endpoints (/api/transcribe, /api/synthesize)",
+      "Telegram voice message support",
     ],
-    usage: `from briven.skills import voice
-
-text = await voice.listen()
-await voice.speak("I understood: " + text)`,
+    usage: `# Via WebUI: click the microphone button to speak
+# Via API:
+POST /api/transcribe  (audio file → text)
+POST /api/synthesize  (text → audio file)`,
   },
   {
     slug: "advanced-memory",
@@ -334,8 +334,8 @@ await voice.speak("I understood: " + text)`,
     category: "Core",
     status: "available",
     icon: "Database",
-    toolPath: "tools/advanced_memory/",
-    installCommand: "briven skill add advanced-memory",
+    toolPath: "python/tools/memory_*.py",
+    installCommand: "Built-in — available out of the box",
     features: [
       "Vector embedding storage and search",
       "BM25 full-text search",
@@ -358,8 +358,8 @@ results = await advanced_memory.search("user preferences")`,
     category: "System",
     status: "available",
     icon: "Clock",
-    toolPath: "tools/scheduler.py",
-    installCommand: "briven skill add scheduler",
+    toolPath: "python/tools/scheduler.py",
+    installCommand: "Built-in — available out of the box",
     features: [
       "Cron expression scheduling",
       "One-time delayed execution",
@@ -382,8 +382,8 @@ await scheduler.at("2025-01-01 00:00", task=send_report)`,
     category: "Core",
     status: "available",
     icon: "Users",
-    toolPath: "tools/multi_agent.py",
-    installCommand: "briven skill add multi-agent",
+    toolPath: "python/tools/call_agents_parallel.py",
+    installCommand: "Built-in — available out of the box",
     features: [
       "Spawn 2-8 async sub-agents",
       "Task delegation and result collection",
@@ -402,14 +402,14 @@ results = await multi_agent.delegate([
     slug: "skill-scanner",
     name: "Skill Security Scanner",
     description:
-      "Scan skills for malicious code using VirusTotal before installation.",
+      "Static analysis with 25+ dangerous patterns and optional VirusTotal lookup.",
     longDescription:
-      "Protect your agent infrastructure by scanning skills and plugins before installation. Integrates with VirusTotal to detect malicious payloads, suspicious patterns, and known threats. A critical safety layer for production deployments.",
+      "Protect your agent infrastructure by scanning skills and plugins before installation. 25+ dangerous pattern regexes (subprocess, eval, exec, network exfil, pickle, ctypes, obfuscation), optional VirusTotal SHA-256 hash lookup, and frontmatter schema enforcement.",
     category: "Security",
     status: "available",
     icon: "ShieldCheck",
     toolPath: "tools/skill_scanner.py",
-    installCommand: "briven skill add skill-scanner",
+    installCommand: "python3 tools/skill_scanner.py --path <dir>",
     features: [
       "VirusTotal integration for file scanning",
       "Static code analysis for suspicious patterns",
@@ -436,7 +436,7 @@ if report.safe:
     status: "coming-soon",
     icon: "Megaphone",
     toolPath: "tools/facebook.py",
-    installCommand: "briven skill add facebook",
+    installCommand: "Coming soon facebook",
     features: [
       "Post text, images, and video updates",
       "Page and business account management",
@@ -462,7 +462,7 @@ await facebook.post(
     status: "coming-soon",
     icon: "AtSign",
     toolPath: "tools/x_twitter.py",
-    installCommand: "briven skill add x-twitter",
+    installCommand: "Coming soon x-twitter",
     features: [
       "Post tweets and threads",
       "Reply and quote tweet automation",
@@ -486,7 +486,7 @@ mentions = await x_twitter.get_mentions()`,
     status: "coming-soon",
     icon: "Camera",
     toolPath: "tools/instagram.py",
-    installCommand: "briven skill add instagram",
+    installCommand: "Coming soon instagram",
     features: [
       "Photo and carousel publishing",
       "Story creation and management",
@@ -512,7 +512,7 @@ await instagram.post_photo(
     status: "coming-soon",
     icon: "Briefcase",
     toolPath: "tools/linkedin.py",
-    installCommand: "briven skill add linkedin",
+    installCommand: "Coming soon linkedin",
     features: [
       "Post text and article updates",
       "Share rich media content",
@@ -538,7 +538,7 @@ await linkedin.share(
     status: "coming-soon",
     icon: "MessagesSquare",
     toolPath: "tools/reddit.py",
-    installCommand: "briven skill add reddit",
+    installCommand: "Coming soon reddit",
     features: [
       "Submit posts to subreddits",
       "Comment and reply automation",
@@ -565,7 +565,7 @@ await reddit.submit(
     status: "coming-soon",
     icon: "Video",
     toolPath: "tools/tiktok.py",
-    installCommand: "briven skill add tiktok",
+    installCommand: "Coming soon tiktok",
     features: [
       "Video upload and publishing",
       "Comment retrieval and moderation",
@@ -593,7 +593,7 @@ await tiktok.upload_video(
     status: "coming-soon",
     icon: "GitBranch",
     toolPath: "tools/github.py",
-    installCommand: "briven skill add github",
+    installCommand: "Coming soon github",
     features: [
       "Commit, push, and branch management",
       "Pull request creation and review",
@@ -620,7 +620,7 @@ await github.create_pr(
     status: "coming-soon",
     icon: "Code2",
     toolPath: "tools/vscode_control.py",
-    installCommand: "briven skill add vscode-control",
+    installCommand: "Coming soon vscode-control",
     features: [
       "Open and navigate files programmatically",
       "Execute VS Code commands and tasks",
@@ -644,7 +644,7 @@ await vscode_control.run_command("editor.action.formatDocument")`,
     status: "coming-soon",
     icon: "Box",
     toolPath: "tools/docker_management.py",
-    installCommand: "briven skill add docker-management",
+    installCommand: "Coming soon docker-management",
     features: [
       "Build images from Dockerfiles",
       "Container lifecycle management (run, stop, remove)",
@@ -670,7 +670,7 @@ container = await docker_management.run(
     status: "coming-soon",
     icon: "Rocket",
     toolPath: "tools/cicd_tool.py",
-    installCommand: "briven skill add cicd-tool",
+    installCommand: "Coming soon cicd-tool",
     features: [
       "GitHub Actions workflow dispatch",
       "Jenkins job triggering and monitoring",
@@ -697,7 +697,7 @@ await cicd_tool.trigger(
     status: "coming-soon",
     icon: "Bug",
     toolPath: "tools/code_review.py",
-    installCommand: "briven skill add code-review",
+    installCommand: "Coming soon code-review",
     features: [
       "AI-powered bug detection via Claude",
       "Security vulnerability scanning",
@@ -722,7 +722,7 @@ for issue in report.issues:
     status: "coming-soon",
     icon: "Zap",
     toolPath: "tools/api_testing.py",
-    installCommand: "briven skill add api-testing",
+    installCommand: "Coming soon api-testing",
     features: [
       "HTTP request builder (GET, POST, PUT, DELETE)",
       "Response validation and assertions",

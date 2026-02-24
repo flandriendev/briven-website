@@ -369,8 +369,8 @@ export default function TrustPage() {
                   },
                   {
                     icon: Lock,
-                    title: "Deny-by-Default Exec",
-                    desc: "Dangerous operations require explicit approval and configuration.",
+                    title: "Exec-Approval System",
+                    desc: "Agent has root-level access — run in Docker or a dedicated VM. Exec-approvals gate dangerous operations.",
                   },
                   {
                     icon: UserCheck,
@@ -384,8 +384,8 @@ export default function TrustPage() {
                   },
                   {
                     icon: Bug,
-                    title: "SSRF Protection",
-                    desc: "Outbound requests are validated and restricted to prevent SSRF.",
+                    title: "Skill Security Scanner",
+                    desc: "25+ dangerous pattern regexes, VirusTotal hash lookup, and frontmatter validation for skills.",
                   },
                   {
                     icon: Fingerprint,
@@ -484,7 +484,7 @@ export default function TrustPage() {
                 href="https://skillshub.briven.ai"
                 className="text-primary/70 hover:text-primary transition-colors no-underline"
               >
-                skillshub.ai
+                skillshub.briven.ai
               </Link>
             </footer>
           </div>

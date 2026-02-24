@@ -6,46 +6,46 @@ import Link from "next/link";
 
 const features = [
   {
-    title: "Tailscale Security",
+    title: "Tailscale Zero-Trust",
     description:
-      "Zero-trust networking out of the box. Your agents run securely on your private tailnet, anywhere in the world.",
+      "No exposed public ports. Encrypted WireGuard tunnels on your private tailnet with ACL enforcement.",
     icon: <Shield className="h-7 w-7 text-primary" />,
-    href: "/docs/vps-tailscale",
+    href: "/features/tailscale-zero-trust",
   },
   {
-    title: "Modular Skills",
+    title: "Portable Skills",
     description:
-      "Extend functionality via Python. Seamlessly hook into Telegram, WhatsApp, Email, and more.",
+      "SKILL.md standard compatible with Claude Code, Cursor, and OpenAI Codex CLI. One skill, multiple platforms.",
     icon: <Blocks className="h-7 w-7 text-primary" />,
     href: "/skills",
   },
   {
-    title: "Multi-LLM Support",
+    title: "Multi-LLM via LiteLLM",
     description:
-      "Model-agnostic to the core. Bring your own models locally or securely connect to cloud providers.",
+      "Model-agnostic via LiteLLM. OpenRouter, Anthropic, xAI, OpenAI, DeepSeek, Google, Groq, and more.",
     icon: <Cpu className="h-7 w-7 text-primary" />,
-    href: "/docs/architecture",
+    href: "/features/multi-llm",
   },
   {
-    title: "Self-Correcting Agents",
+    title: "Multi-Agent Cooperation",
     description:
-      "Built-in reasoning loops handle errors gracefully and autonomously retry failed tasks.",
+      "Sequential delegation, parallel execution (2-8 sub-agents), and A2A protocol for cross-system orchestration.",
     icon: <Bot className="h-7 w-7 text-primary" />,
-    href: "/docs/usage",
+    href: "/features/multi-agent",
   },
   {
-    title: "/atlas Discipline",
+    title: "/atlas Governance",
     description:
-      "Strict project guidelines maintained through the /atlas system for consistent, high-quality generation.",
+      "The /atlas instruction layer governs agent behavior. System prompt always reads /atlas before any action.",
     icon: <FileCheck2 className="h-7 w-7 text-primary" />,
-    href: "/docs/usage",
+    href: "/features/atlas-governance",
   },
   {
-    title: "Native Python/FastAPI",
+    title: "Hybrid Memory System",
     description:
-      "High performance, async-first architecture. The perfect bridge between AI and infrastructure.",
+      "SQLite + FAISS embeddings + BM25 hybrid search. Persistent memory across sessions with semantic recall.",
     icon: <Zap className="h-7 w-7 text-primary" />,
-    href: "/docs/architecture",
+    href: "/features/hybrid-memory",
   },
 ];
 

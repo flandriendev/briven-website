@@ -14,14 +14,9 @@ const tabs = [
     color: "bg-green-500/20 text-green-400 border-green-500/30",
   },
   {
-    label: "pip",
-    command: "pip install briven && briven init",
-    color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-  },
-  {
-    label: "Git Clone",
+    label: "Docker",
     command:
-      "git clone https://github.com/flandriendev/briven.git && cd briven && make install",
+      "git clone https://github.com/flandriendev/briven.git && cd briven && docker compose up -d --build",
     color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
   },
 ];
