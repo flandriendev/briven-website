@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { RiGithubFill, RiTwitterXLine } from "react-icons/ri";
 
-const navLinks = [
+const allNavLinks = [
   { label: "Docs", href: "/docs" },
   // { label: "GitHub", href: "https://github.com/flandriendev/briven" },
   { label: "Skills", href: "/skills" },
@@ -22,6 +23,21 @@ const navLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  // Filter out the link matching the current top-level section, prepend Home when not on homepage
+  const currentSection = "/" + pathname.split("/").filter(Boolean)[0];
+  const navLinks = (() => {
+    const filtered = allNavLinks.filter((link) => {
+      if (link.href.startsWith("http")) return true;
+      return link.href !== currentSection;
+    });
+    if (!isHome) {
+      return [{ label: "Home", href: "/" }, ...filtered];
+    }
+    return filtered;
+  })();
   return (
     <footer className="w-full mt-8">
       <div className="max-w-[860px] mx-auto px-6 max-[480px]:px-4 py-10">

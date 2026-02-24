@@ -99,7 +99,7 @@ print(math.factorial(20))
       "Telegram Bot API integration with auto-discover chat ID via pairing flow. Send text, images, documents, and rich media. Receive messages and commands from users. Configurable via usr/.env.",
     category: "Messaging",
     status: "available",
-    icon: "Send",
+    icon: "Telegram",
     toolPath: "tools/telegram.py",
     installCommand: "Built-in — configure via usr/.env",
     features: [
@@ -125,7 +125,7 @@ await telegram.send_message(
       "Connect your agents to WhatsApp using the Business Cloud API. Send text and media messages. Configurable via usr/.env.",
     category: "Messaging",
     status: "available",
-    icon: "MessageCircle",
+    icon: "WhatsApp",
     toolPath: "tools/whatsapp.py",
     installCommand: "Built-in — configure via usr/.env",
     features: [
@@ -179,7 +179,7 @@ await email.send(
       "Leverage Claude's advanced code generation capabilities directly within your agent. Generate new code, refactor existing files, review pull requests, write tests, and explain complex codebases — all powered by the Anthropic API.",
     category: "Developer",
     status: "available",
-    icon: "Sparkles",
+    icon: "Anthropic",
     toolPath: "tools/claude_code.py",
     installCommand: "Built-in — requires API_KEY_ANTHROPIC in usr/.env",
     features: [
@@ -205,7 +205,7 @@ generated = await claude_code.generate(
       "Core Briven skill for zero-trust networking. Check tailnet status, list and ping peers, manage ACLs, and ensure secure connectivity across all your agent nodes. The foundation of Briven's security model.",
     category: "Security",
     status: "available",
-    icon: "Shield",
+    icon: "Tailscale",
     toolPath: "tools/tailscale.py",
     installCommand: "Built-in — configure TAILSCALE_AUTHKEY in usr/.env",
     features: [
@@ -256,7 +256,7 @@ pref = await memory.recall("user_preference")`,
       "Slack integration via webhooks and Bot API with channel targeting. Send messages, respond to mentions, and manage threads. Configurable via usr/.env.",
     category: "Messaging",
     status: "available",
-    icon: "Hash",
+    icon: "Slack",
     toolPath: "tools/slack.py",
     installCommand: "Built-in — configure via usr/.env",
     features: [
@@ -282,7 +282,7 @@ await slack.send_message(
       "Discord integration via webhooks with rich embeds. Send messages, status updates, and notifications to your Discord channels directly from your Briven agent.",
     category: "Messaging",
     status: "available",
-    icon: "MessageSquare",
+    icon: "Discord",
     toolPath: "tools/discord.py",
     installCommand: "Built-in — configure via usr/.env",
     features: [
@@ -424,6 +424,70 @@ if report.safe:
     await skill_scanner.approve(report.id)`,
   },
 
+  // ── Available – Payment Skill Tools ──
+  {
+    slug: "mavi-payment-agent",
+    name: "mavi Payment Agent",
+    description:
+      "Link your mavi Card, process payments, and earn cashback on every Briven transaction.",
+    longDescription:
+      "A general-purpose payment skill powered by mavi Finans. Links a user's mavi Card (prepaid debit card issued by mavi Finans on Wallester infrastructure), detects purchase intent, applies cashback and first-payment discounts, and completes payments autonomously. Includes a 5-step payment flow, 15% first-payment discount, 2-3% cashback tiers, and milestone bonuses.",
+    category: "Payment",
+    status: "available",
+    icon: "MaviFinans",
+    toolPath: "skills/mavi-payment-agent/",
+    installCommand: "Built-in — configure via usr/.env",
+    features: [
+      "Card linking/unlinking wizard with KYC guidance",
+      "15% off first Briven payment",
+      "2% cashback on all transactions (3% at Gold tier)",
+      "Milestone bonuses at 500 EUR and 1,000 EUR spend",
+      "Autonomous 5-step payment flow",
+      "3 subagents: Promo Generator, Transaction Tracker, Onboarding Assistant",
+    ],
+    usage: `# Trigger via natural language:
+"pay with mavi" / "link mavi card" / "my rewards"
+
+# Or via skill import:
+from briven.skills import mavi_payment
+
+await mavi_payment.process(
+    amount=19.00,
+    currency="EUR",
+    description="Pro plan subscription"
+)`,
+  },
+  {
+    slug: "mavi-rewards-tracker",
+    name: "mavi Rewards Tracker",
+    description:
+      "Personal rewards dashboard — track cashback, milestones, and spending analytics.",
+    longDescription:
+      "A companion skill to the mavi Payment Agent. Tracks every cashback credit, discount applied, milestone reached, and bonus earned. Live dashboard with progress bars, monthly breakdowns, full transaction history, and proactive notifications. Works standalone or paired with the payment agent.",
+    category: "Payment",
+    status: "available",
+    icon: "MaviFinans",
+    toolPath: "skills/mavi-rewards-tracker/",
+    installCommand: "Built-in — companion to mavi-payment-agent",
+    features: [
+      "Live cashback balance and lifetime earnings dashboard",
+      "Milestone progress bars and Gold tier tracking",
+      "Monthly spending breakdowns and trends",
+      "Full transaction history (last 100, paginated)",
+      "Reward claiming — apply to next payment or transfer to card",
+      "Proactive notifications: milestone alerts, monthly summaries",
+    ],
+    usage: `# Trigger via natural language:
+"show rewards" / "cashback status" / "my mavi stats"
+
+# Or via skill import:
+from briven.skills import mavi_rewards
+
+dashboard = await mavi_rewards.summary()
+print(dashboard.cashback_balance)
+print(dashboard.tier)  # "Silver" or "Gold"`,
+  },
+
   // ── Coming soon – Social Skill Tools ──
   {
     slug: "facebook",
@@ -434,7 +498,7 @@ if report.safe:
       "Full Facebook integration powered by the Graph API. Post status updates, manage business pages, fetch and reply to comments, upload media, and monitor page insights — all from within your Briven agent.",
     category: "Social",
     status: "coming-soon",
-    icon: "Megaphone",
+    icon: "Facebook",
     toolPath: "tools/facebook.py",
     installCommand: "Coming soon facebook",
     features: [
@@ -460,7 +524,7 @@ await facebook.post(
       "Connect your agents to X.com (formerly Twitter) via the X API v2. Post tweets, reply to conversations, search trending topics, manage followers, and monitor mentions in real time.",
     category: "Social",
     status: "coming-soon",
-    icon: "AtSign",
+    icon: "XTwitter",
     toolPath: "tools/x_twitter.py",
     installCommand: "Coming soon x-twitter",
     features: [
@@ -484,7 +548,7 @@ mentions = await x_twitter.get_mentions()`,
       "Integrate your agents with Instagram using the Graph API. Publish photos and stories, retrieve and respond to comments, track engagement metrics, and automate your social media presence.",
     category: "Social",
     status: "coming-soon",
-    icon: "Camera",
+    icon: "Instagram",
     toolPath: "tools/instagram.py",
     installCommand: "Coming soon instagram",
     features: [
@@ -510,7 +574,7 @@ await instagram.post_photo(
       "Professional networking integration via the LinkedIn API v2. Share updates and articles, manage your professional network, track post engagement, and automate LinkedIn presence for your agents.",
     category: "Social",
     status: "coming-soon",
-    icon: "Briefcase",
+    icon: "LinkedIn",
     toolPath: "tools/linkedin.py",
     installCommand: "Coming soon linkedin",
     features: [
@@ -536,7 +600,7 @@ await linkedin.share(
       "Full Reddit API integration for your Briven agents. Submit posts, comment on threads, browse and search subreddits, monitor mentions, and track karma — all automated through your agent workflows.",
     category: "Social",
     status: "coming-soon",
-    icon: "MessagesSquare",
+    icon: "Reddit",
     toolPath: "tools/reddit.py",
     installCommand: "Coming soon reddit",
     features: [
@@ -563,7 +627,7 @@ await reddit.submit(
       "Connect your agents to TikTok for automated video publishing and engagement. Upload videos, retrieve comments, track views and likes, and manage your TikTok presence directly from Briven.",
     category: "Social",
     status: "coming-soon",
-    icon: "Video",
+    icon: "TikTok",
     toolPath: "tools/tiktok.py",
     installCommand: "Coming soon tiktok",
     features: [
@@ -591,7 +655,7 @@ await tiktok.upload_video(
       "Full GitHub integration for development workflows. Commit and push code, create and review pull requests, manage issues and labels, trigger workflows, and automate your entire development pipeline from Briven.",
     category: "Developer",
     status: "coming-soon",
-    icon: "GitBranch",
+    icon: "GitHub",
     toolPath: "tools/github.py",
     installCommand: "Coming soon github",
     features: [
@@ -618,7 +682,7 @@ await github.create_pr(
       "Remote-control Visual Studio Code from your Briven agents. Open files, navigate to symbols, execute editor commands, manage extensions, and integrate with the VS Code API for seamless developer-agent collaboration.",
     category: "Developer",
     status: "coming-soon",
-    icon: "Code2",
+    icon: "VSCode",
     toolPath: "tools/vscode_control.py",
     installCommand: "Coming soon vscode-control",
     features: [
@@ -642,7 +706,7 @@ await vscode_control.run_command("editor.action.formatDocument")`,
       "Container management powered by docker-py. Build images, run and stop containers, manage volumes and networks, inspect logs, and orchestrate your containerized infrastructure — all from your Briven agent.",
     category: "Developer",
     status: "coming-soon",
-    icon: "Box",
+    icon: "Docker",
     toolPath: "tools/docker_management.py",
     installCommand: "Coming soon docker-management",
     features: [

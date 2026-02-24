@@ -2,10 +2,9 @@
 
 import { motion } from "framer-motion";
 import {
-  MessageCircle,
   BookOpen,
-  Github,
 } from "lucide-react";
+import { RiDiscordFill, RiGithubFill } from "react-icons/ri";
 import { GiPuzzle } from "react-icons/gi";
 import Link from "next/link";
 
@@ -17,7 +16,7 @@ const links: {
   glowColor: string;
 }[] = [
     {
-      icon: MessageCircle,
+      icon: RiDiscordFill,
       label: "Discord",
       description: "Join the community",
       href: "https://discord.com/channels/1475388668721107081/1475388669639790765",
@@ -31,7 +30,7 @@ const links: {
       glowColor: "#3b82f6",
     },
     {
-      icon: Github,
+      icon: RiGithubFill,
       label: "GitHub",
       description: "View the source",
       href: "https://github.com/flandriendev/briven",

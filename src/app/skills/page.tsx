@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,14 +11,8 @@ import {
   Globe,
   FolderOpen,
   Terminal,
-  Send,
-  MessageCircle,
   Mail,
-  Sparkles,
-  Shield,
   Brain,
-  Hash,
-  MessageSquare,
   Mic,
   Database,
   Clock,
@@ -25,49 +20,87 @@ import {
   ShieldCheck,
   ArrowLeft,
   Search,
-  Megaphone,
-  AtSign,
-  Camera,
-  Briefcase,
-  MessagesSquare,
-  Video,
-  GitBranch,
-  Code2,
-  Box,
   Rocket,
   Bug,
   Zap,
 } from "lucide-react";
+import {
+  RiTelegramFill,
+  RiWhatsappFill,
+  RiSlackFill,
+  RiDiscordFill,
+  RiFacebookFill,
+  RiTwitterXFill,
+  RiInstagramFill,
+  RiLinkedinFill,
+  RiRedditFill,
+  RiTiktokFill,
+  RiGithubFill,
+  RiAnthropicFill,
+} from "react-icons/ri";
+import { IoLogoDocker } from "react-icons/io5";
+import { VscVscode } from "react-icons/vsc";
+import { SiTailscale } from "react-icons/si";
 
 const iconMap: Record<string, React.ReactNode> = {
+  /* Lucide — generic skills */
   Globe: <Globe className="h-7 w-7" />,
   FolderOpen: <FolderOpen className="h-7 w-7" />,
   Terminal: <Terminal className="h-7 w-7" />,
-  Send: <Send className="h-7 w-7" />,
-  MessageCircle: <MessageCircle className="h-7 w-7" />,
   Mail: <Mail className="h-7 w-7" />,
-  Sparkles: <Sparkles className="h-7 w-7" />,
-  Shield: <Shield className="h-7 w-7" />,
   Brain: <Brain className="h-7 w-7" />,
-  Hash: <Hash className="h-7 w-7" />,
-  MessageSquare: <MessageSquare className="h-7 w-7" />,
   Mic: <Mic className="h-7 w-7" />,
   Database: <Database className="h-7 w-7" />,
   Clock: <Clock className="h-7 w-7" />,
   Users: <Users className="h-7 w-7" />,
   ShieldCheck: <ShieldCheck className="h-7 w-7" />,
-  Megaphone: <Megaphone className="h-7 w-7" />,
-  AtSign: <AtSign className="h-7 w-7" />,
-  Camera: <Camera className="h-7 w-7" />,
-  Briefcase: <Briefcase className="h-7 w-7" />,
-  MessagesSquare: <MessagesSquare className="h-7 w-7" />,
-  Video: <Video className="h-7 w-7" />,
-  GitBranch: <GitBranch className="h-7 w-7" />,
-  Code2: <Code2 className="h-7 w-7" />,
-  Box: <Box className="h-7 w-7" />,
   Rocket: <Rocket className="h-7 w-7" />,
   Bug: <Bug className="h-7 w-7" />,
   Zap: <Zap className="h-7 w-7" />,
+  /* React-icons — brand icons */
+  Telegram: <RiTelegramFill className="h-7 w-7" />,
+  WhatsApp: <RiWhatsappFill className="h-7 w-7" />,
+  Slack: <RiSlackFill className="h-7 w-7" />,
+  Discord: <RiDiscordFill className="h-7 w-7" />,
+  Facebook: <RiFacebookFill className="h-7 w-7" />,
+  XTwitter: <RiTwitterXFill className="h-7 w-7" />,
+  Instagram: <RiInstagramFill className="h-7 w-7" />,
+  LinkedIn: <RiLinkedinFill className="h-7 w-7" />,
+  Reddit: <RiRedditFill className="h-7 w-7" />,
+  TikTok: <RiTiktokFill className="h-7 w-7" />,
+  GitHub: <RiGithubFill className="h-7 w-7" />,
+  Anthropic: <RiAnthropicFill className="h-7 w-7" />,
+  Tailscale: <SiTailscale className="h-7 w-7" />,
+  VSCode: <VscVscode className="h-7 w-7" />,
+  Docker: <IoLogoDocker className="h-7 w-7" />,
+  MaviFinans: <Image src="/companies/mavi-finans.svg" alt="mavi Finans" width={28} height={28} className="h-7 w-7" />,
+};
+
+/* ── Brand colors by skill slug ── */
+const brandColors: Record<string, string> = {
+  // Messaging
+  telegram: "#26A5E4",
+  whatsapp: "#25D366",
+  slack: "#36C5F0",
+  discord: "#5865F2",
+  email: "#EA4335",
+  // Social
+  facebook: "#1877F2",
+  "x-twitter": "#ffffff",
+  instagram: "#E4405F",
+  linkedin: "#0A66C2",
+  reddit: "#FF4500",
+  tiktok: "#FE2C55",
+  // Security
+  tailscale: "#797878",
+  // Payment
+  "mavi-payment-agent": "#45b1e8",
+  "mavi-rewards-tracker": "#45b1e8",
+  // Developer
+  "claude-code": "#D97757",
+  github: "#f0f0f2",
+  "vscode-control": "#0076B8",
+  "docker-management": "#1d63ed",
 };
 
 const categoryMeta: Record<string, { description: string }> = {
@@ -103,12 +136,17 @@ const categoryMeta: Record<string, { description: string }> = {
     description:
       "Post, engage, and manage your social media presence.",
   },
+  Payment: {
+    description:
+      "Payment processing, cashback rewards, and financial integrations powered by mavi Finans.",
+  },
 };
 
 const categoryOrder = [
   "Messaging",
   "Core",
   "Developer",
+  "Payment",
   "Data",
   "System",
   "Security",
@@ -216,58 +254,50 @@ export default function SkillsPage() {
 
               {/* Skill cards grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {group.skills.map((skill, idx) => (
-                  <motion.div
-                    key={skill.slug}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.04 }}
-                  >
-                    <Link
-                      href={`/skills/${skill.slug}`}
-                      className={`group relative flex flex-col items-center text-center p-5 rounded-2xl border bg-card transition-all duration-300 no-underline h-full ${
-                        skill.status === "coming-soon"
-                          ? "border-border/60 opacity-60 hover:opacity-100 hover:border-amber-500/40"
-                          : "border-border hover:border-primary/50 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(238,69,70,0.15)]"
-                      }`}
+                {group.skills.map((skill, idx) => {
+                  const brand = brandColors[skill.slug] || "#ee4546";
+                  return (
+                    <motion.div
+                      key={skill.slug}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.04 }}
                     >
-                      {/* Coming soon badge */}
-                      {skill.status === "coming-soon" && (
-                        <div className="absolute top-2 right-2 text-[9px] font-bold uppercase tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-full">
-                          Soon
+                      <Link
+                        href={`/skills/${skill.slug}`}
+                        style={{ "--brand": brand } as React.CSSProperties}
+                        className={`skill-card group relative flex flex-col items-center text-center p-5 rounded-2xl border bg-card no-underline h-full ${
+                          skill.status === "coming-soon"
+                            ? "skill-card-soon"
+                            : ""
+                        }`}
+                      >
+                        {/* Coming soon badge */}
+                        {skill.status === "coming-soon" && (
+                          <div className="absolute top-2 right-2 text-[9px] font-bold uppercase tracking-wider text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-full">
+                            Soon
+                          </div>
+                        )}
+
+                        {/* Icon */}
+                        <div className="skill-card-icon mb-3 p-3 rounded-xl">
+                          {iconMap[skill.icon]}
                         </div>
-                      )}
 
-                      {/* Icon */}
-                      <div
-                        className={`mb-3 p-3 rounded-xl transition-colors duration-300 ${
-                          skill.status === "coming-soon"
-                            ? "text-muted-foreground bg-secondary"
-                            : "text-primary bg-primary/10 group-hover:bg-primary/15"
-                        }`}
-                      >
-                        {iconMap[skill.icon]}
-                      </div>
+                        {/* Name */}
+                        <h3 className="skill-card-name text-sm font-semibold tracking-tight mb-1">
+                          {skill.name}
+                        </h3>
 
-                      {/* Name */}
-                      <h3
-                        className={`text-sm font-semibold tracking-tight mb-1 transition-colors ${
-                          skill.status === "coming-soon"
-                            ? "text-muted-foreground"
-                            : "text-foreground group-hover:text-primary"
-                        }`}
-                      >
-                        {skill.name}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-xs text-muted-foreground/70 leading-relaxed line-clamp-2">
-                        {skill.description}
-                      </p>
-                    </Link>
-                  </motion.div>
-                ))}
+                        {/* Description */}
+                        <p className="text-xs text-muted-foreground/70 leading-relaxed line-clamp-2">
+                          {skill.description}
+                        </p>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.section>
           ))}

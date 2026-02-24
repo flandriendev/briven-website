@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { skills, getSkillBySlug } from "@/lib/skills";
@@ -8,64 +9,69 @@ import {
   Globe,
   FolderOpen,
   Terminal,
-  Send,
-  MessageCircle,
   Mail,
-  Sparkles,
-  Shield,
   Brain,
-  Hash,
-  MessageSquare,
   Mic,
   Database,
   Clock,
   Users,
   ShieldCheck,
   CheckCircle2,
-  Megaphone,
-  AtSign,
-  Camera,
-  Briefcase,
-  MessagesSquare,
-  Video,
-  GitBranch,
-  Code2,
-  Box,
   Rocket,
   Bug,
   Zap,
 } from "lucide-react";
+import {
+  RiTelegramFill,
+  RiWhatsappFill,
+  RiSlackFill,
+  RiDiscordFill,
+  RiFacebookFill,
+  RiTwitterXFill,
+  RiInstagramFill,
+  RiLinkedinFill,
+  RiRedditFill,
+  RiTiktokFill,
+  RiGithubFill,
+  RiAnthropicFill,
+} from "react-icons/ri";
+import { IoLogoDocker } from "react-icons/io5";
+import { VscVscode } from "react-icons/vsc";
+import { SiTailscale } from "react-icons/si";
 import SkillCopyButton from "./copy-button";
 
 const iconMap: Record<string, React.ReactNode> = {
+  /* Lucide — generic skills */
   Globe: <Globe className="h-8 w-8" />,
   FolderOpen: <FolderOpen className="h-8 w-8" />,
   Terminal: <Terminal className="h-8 w-8" />,
-  Send: <Send className="h-8 w-8" />,
-  MessageCircle: <MessageCircle className="h-8 w-8" />,
   Mail: <Mail className="h-8 w-8" />,
-  Sparkles: <Sparkles className="h-8 w-8" />,
-  Shield: <Shield className="h-8 w-8" />,
   Brain: <Brain className="h-8 w-8" />,
-  Hash: <Hash className="h-8 w-8" />,
-  MessageSquare: <MessageSquare className="h-8 w-8" />,
   Mic: <Mic className="h-8 w-8" />,
   Database: <Database className="h-8 w-8" />,
   Clock: <Clock className="h-8 w-8" />,
   Users: <Users className="h-8 w-8" />,
   ShieldCheck: <ShieldCheck className="h-8 w-8" />,
-  Megaphone: <Megaphone className="h-8 w-8" />,
-  AtSign: <AtSign className="h-8 w-8" />,
-  Camera: <Camera className="h-8 w-8" />,
-  Briefcase: <Briefcase className="h-8 w-8" />,
-  MessagesSquare: <MessagesSquare className="h-8 w-8" />,
-  Video: <Video className="h-8 w-8" />,
-  GitBranch: <GitBranch className="h-8 w-8" />,
-  Code2: <Code2 className="h-8 w-8" />,
-  Box: <Box className="h-8 w-8" />,
   Rocket: <Rocket className="h-8 w-8" />,
   Bug: <Bug className="h-8 w-8" />,
   Zap: <Zap className="h-8 w-8" />,
+  /* React-icons — brand icons */
+  Telegram: <RiTelegramFill className="h-8 w-8" />,
+  WhatsApp: <RiWhatsappFill className="h-8 w-8" />,
+  Slack: <RiSlackFill className="h-8 w-8" />,
+  Discord: <RiDiscordFill className="h-8 w-8" />,
+  Facebook: <RiFacebookFill className="h-8 w-8" />,
+  XTwitter: <RiTwitterXFill className="h-8 w-8" />,
+  Instagram: <RiInstagramFill className="h-8 w-8" />,
+  LinkedIn: <RiLinkedinFill className="h-8 w-8" />,
+  Reddit: <RiRedditFill className="h-8 w-8" />,
+  TikTok: <RiTiktokFill className="h-8 w-8" />,
+  GitHub: <RiGithubFill className="h-8 w-8" />,
+  Anthropic: <RiAnthropicFill className="h-8 w-8" />,
+  Tailscale: <SiTailscale className="h-8 w-8" />,
+  VSCode: <VscVscode className="h-8 w-8" />,
+  Docker: <IoLogoDocker className="h-8 w-8" />,
+  MaviFinans: <Image src="/companies/mavi-finans.svg" alt="mavi Finans" width={32} height={32} className="h-8 w-8" />,
 };
 
 export function generateStaticParams() {

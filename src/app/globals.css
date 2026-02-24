@@ -278,6 +278,61 @@
   animation-play-state: paused;
 }
 
+/* ── Skill card brand colors ── */
+.skill-card {
+  --brand: #ee4546;
+  border-color: var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.skill-card-icon {
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  transition: all 0.3s ease;
+}
+
+.skill-card-name {
+  @apply text-foreground;
+  transition: color 0.3s ease;
+}
+
+.skill-card:hover {
+  border-color: color-mix(in srgb, var(--brand) 45%, transparent);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--brand) 18%, transparent),
+              0 0 0 1px color-mix(in srgb, var(--brand) 8%, transparent);
+  transform: translateY(-4px);
+}
+
+.skill-card:hover .skill-card-icon {
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+}
+
+.skill-card:hover .skill-card-name {
+  color: var(--brand);
+}
+
+/* Coming-soon cards: muted brand */
+.skill-card-soon {
+  opacity: 0.55;
+}
+
+.skill-card-soon .skill-card-icon {
+  color: color-mix(in srgb, var(--brand) 50%, var(--color-muted-foreground));
+  background: color-mix(in srgb, var(--brand) 6%, transparent);
+}
+
+.skill-card-soon .skill-card-name {
+  @apply text-muted-foreground;
+}
+
+.skill-card-soon:hover {
+  opacity: 1;
+}
+
+.skill-card-soon:hover .skill-card-name {
+  color: var(--brand);
+}
+
 /* ── Footer social icon hover ── */
 .footer-social-icon {
   --brand: 255 255 255;
