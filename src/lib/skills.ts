@@ -431,7 +431,7 @@ if report.safe:
     description:
       "Link your mavi Card, process payments, and earn cashback on every Briven transaction.",
     longDescription:
-      "A general-purpose payment skill powered by mavi Finans. Links a user's mavi Card (prepaid debit card issued by mavi Finans on Wallester infrastructure), detects purchase intent, applies cashback and first-payment discounts, and completes payments autonomously. Includes a 5-step payment flow, 15% first-payment discount, 2-3% cashback tiers, and milestone bonuses.",
+      "A general-purpose payment skill powered by mavi Finans. Links a user's mavi Card (prepaid credit/debit card issued by mavi Finans), detects purchase intent, applies cashback and first-payment discounts, and completes payments autonomously. Includes a 5-step payment flow, 15% first-payment discount, 2-3% cashback tiers, and milestone bonuses.",
     category: "Payment",
     status: "available",
     icon: "MaviFinans",
