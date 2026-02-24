@@ -39,9 +39,9 @@ const links: {
     },
     {
       icon: GiPuzzle,
-      label: "SkillsMarket",
-      description: "Premium marketplace",
-      href: "https://skillsmarket.briven.ai",
+      label: "Skills Hub",
+      description: "Skills marketplace",
+      href: "https://skillshub.briven.ai",
       glowColor: "#fbe731",
     },
   ];
@@ -49,7 +49,7 @@ const links: {
 export default function QuickLinks() {
   return (
     <section className="w-full">
-      <div className="grid grid-cols-4 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {links.map((link, idx) => {
           const Icon = link.icon;
           return (
@@ -63,7 +63,7 @@ export default function QuickLinks() {
               <Link
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
-                className="group flex flex-col items-center text-center bg-card border border-border rounded-2xl p-6 transition-all duration-300"
+                className="group flex flex-col items-center text-center bg-card border border-border rounded-2xl px-3 py-6 transition-all duration-300"
                 style={{ border: "1px solid transparent" }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;

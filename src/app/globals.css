@@ -163,6 +163,51 @@
   @apply text-foreground font-semibold;
 }
 
+/* ── Trust page article styling ── */
+.trust-content {
+  @apply leading-relaxed text-sm;
+  color: var(--color-muted-foreground);
+}
+
+.trust-content h2 {
+  @apply text-2xl font-bold tracking-tight mt-8 mb-1;
+  color: var(--color-foreground);
+}
+
+.trust-content h3 {
+  @apply text-xl font-semibold tracking-tight mt-6 mb-1;
+  color: var(--color-foreground);
+}
+
+.trust-content p {
+  @apply mb-5 leading-relaxed;
+}
+
+.trust-content ul {
+  @apply mb-3 pl-6 list-disc space-y-1;
+}
+
+.trust-content li {
+  @apply pl-2;
+}
+
+.trust-content li::marker {
+  color: var(--color-primary);
+}
+
+.trust-content strong {
+  @apply font-semibold;
+  color: var(--color-foreground);
+}
+
+.trust-content a {
+  @apply text-primary underline underline-offset-[3px];
+}
+
+.trust-content a:hover {
+  color: var(--color-foreground);
+}
+
 /* Marquee animations for testimonials */
 @keyframes marquee-left {
   0% {

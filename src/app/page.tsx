@@ -15,12 +15,12 @@ export default function Home() {
       <Header />
       <main className="min-h-screen flex flex-col items-center overflow-x-hidden">
         <Hero />
-        <div className="max-w-4xl w-full px-6 flex flex-col gap-32 py-24">
+        <div className="max-w-[860px] w-full px-6 max-[480px]:px-4 flex flex-col gap-32 py-24">
           <WhatIsBriven />
           <QuickStart />
         </div>
         <Testimonials />
-        <div className="max-w-4xl w-full px-6 flex flex-col gap-32 py-24">
+        <div className="max-w-[860px] w-full px-6 max-[480px]:px-4 flex flex-col gap-32 py-24">
           <Features />
           <QuickLinks />
           <WaitlistForm />

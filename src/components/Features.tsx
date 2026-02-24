@@ -59,7 +59,7 @@ export default function Features() {
         Everything you need to build, deploy, and manage secure AI agents on
         your own infrastructure.
       </p>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {features.map((feature, idx) => (
           <motion.div
             key={idx}

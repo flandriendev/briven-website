@@ -15,7 +15,7 @@ export default function ContentPage({
 }: ContentPageProps) {
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-3xl mx-auto px-6 py-16 pt-24">
+      <div className="max-w-[860px] mx-auto px-6 max-[480px]:px-4 py-16 pt-24">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-12"

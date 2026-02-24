@@ -122,7 +122,7 @@ export default function Testimonials() {
       className="w-full overflow-hidden"
     >
       {/* Header */}
-      <div className="max-w-4xl mx-auto px-6 flex items-center justify-between mb-6">
+      <div className="max-w-[860px] mx-auto px-6 max-[480px]:px-4 flex items-center justify-between mb-6">
         <h2 className="text-3xl font-semibold tracking-tight">
           <span className="text-primary mr-2">⟩</span>What People Say
         </h2>

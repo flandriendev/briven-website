@@ -23,7 +23,7 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative w-full pt-16 pb-12 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+    <section className="relative w-full pt-16 pb-12 flex flex-col items-center justify-center text-center px-6 max-[480px]:px-4 overflow-hidden">
       {/* Space gradient background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gradient-to-b from-primary/10 via-primary/5 to-transparent blur-[80px] rounded-full" />
